@@ -1,7 +1,8 @@
 const express = require("express");
 const path = require("path");
+const cookieParser = require("cookie-parser");
 const cors = require("cors");
-const router = require("./router");
+const router = require("./routes");
 
 const app = express();
 
@@ -12,8 +13,11 @@ app.use(
       ? process.env.FRONTEND_URL.split(",")
       : process.env.FRONTEND_URL ?? "http://localhost:3000",
     optionsSuccessStatus: 200,
+    credentials: true,
   })
 );
+
+app.use(cookieParser());
 
 app.use(express.json());
 
