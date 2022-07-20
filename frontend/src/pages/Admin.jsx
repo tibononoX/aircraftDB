@@ -13,9 +13,25 @@ const Admin = () => {
   const handleTab = () => {
     switch (query.get("tab")) {
       case "users":
-        return <h1>users</h1>;
+        return (
+          <div className="tab">
+            <ul className="contentList">
+              <li>user 1</li>
+              <li>user 2</li>
+              <li>user 3</li>
+            </ul>
+          </div>
+        );
       case "aircrafts":
-        return <h1>aircrafts</h1>;
+        return (
+          <div className="tab">
+            <ul className="contentList">
+              <li>aircraft 1</li>
+              <li>aircraft 2</li>
+              <li>aircraft 3</li>
+            </ul>
+          </div>
+        );
       default:
         return null;
     }
