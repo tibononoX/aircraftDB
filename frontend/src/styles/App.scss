@@ -1,0 +1,81 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Open-sans", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+}
+
+.App {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  min-height: 100vh;
+
+  .page {
+    width: 100%;
+    height: 100%;
+    padding-bottom: 600px;
+  }
+}
+
+a {
+  margin: 10px;
+}
+
+ul {
+  display: flex;
+  flex-direction: column;
+  list-style: none;
+  width: 30%;
+  padding: 0;
+}
+
+ul li {
+  text-align: left;
+}
+
+@media screen and (min-width: 960px) {
+  .App {
+    .page {
+    }
+  }
+}
+
+.veryTinySmallIcon {
+  width: 14px;
+  height: 14px;
+}
+.verySmallIcon {
+  width: 20px;
+  height: 20px;
+}
+.midSmallIcon {
+  width: 25px;
+  height: 25px;
+}
+.smallIcon {
+  width: 30px;
+  height: 30px;
+}
+.medIcon {
+  width: 45px;
+  height: 45px;
+}
+.bigIcon {
+  width: 64px;
+  height: 64px;
+}
