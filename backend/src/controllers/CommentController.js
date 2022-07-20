@@ -1,7 +1,7 @@
 const models = require("../models");
 
 class CommentController {
-  static browseByIdea = async (req, res) => {
+  static browseByAircraft = async (req, res) => {
     const aircraftId = parseInt(req.query.aircraft, 10);
     if (!aircraftId) {
       return res.status(400).send("Provide an aircraft ID");
@@ -77,6 +77,40 @@ class CommentController {
         return res.sendStatus(500);
       });
     return null;
+  };
+
+  static vote = async (req, res) => {
+    const { commentId } = req.body;
+    try {
+      const [checkVoted] = await models.comment.checkAlreadyVoted({
+        commentId,
+        userId: req.userId,
+      });
+      if (checkVoted.length) {
+        await models.comment.deleteVote({
+          commentId,
+          userId: req.userId,
+        });
+        return res.status(200).send("deleted vote");
+      }
+      await models.comment.addVote({
+        commentId,
+        userId: req.userId,
+      });
+      return res.status(201).send("added vote");
+    } catch (err) {
+      return res.status(500).send(err.message);
+    }
+  };
+
+  static browseVote = async (req, res) => {
+    const commentId = parseInt(req.params.ideaId, 10);
+    try {
+      const [vote] = await models.idea.browseVote(commentId);
+      return res.status(200).send(vote);
+    } catch (err) {
+      return res.status(500).send(err.message);
+    }
   };
 
   static delete = (req, res) => {
