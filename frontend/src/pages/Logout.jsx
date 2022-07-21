@@ -28,7 +28,7 @@ const Logout = () => {
 
   useEffect(() => {
     logout();
-  });
+  }, []);
 
   return (
     <section className="loginForm">

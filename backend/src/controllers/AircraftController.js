@@ -24,6 +24,19 @@ class AircraftController {
     }
   };
 
+  static getManufacturers = async (req, res) => {
+    try {
+      const manufacturers = await models.aircraft
+        .findAllManufacturers()
+        .then(([manufacturersList]) => manufacturersList);
+
+      res.status(200).send(manufacturers);
+    } catch (err) {
+      console.error(err);
+      res.sendStatus(500);
+    }
+  };
+
   static read = (req, res) => {
     models.aircraft
       .find(req.params.id)

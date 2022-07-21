@@ -1,5 +1,4 @@
 import { useState } from "react";
-
 import Api from "@pages/Api";
 import Catalog from "@pages/Catalog";
 import Contact from "@pages/Contact";
@@ -20,6 +19,7 @@ import "@styles/App.scss";
 
 function App() {
   const [user, setUser] = useState();
+
   return (
     <div className="App">
       {/* eslint-disable-next-line */}

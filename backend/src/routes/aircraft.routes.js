@@ -10,6 +10,7 @@ const router = express.Router();
 
 //  Aircraft CRUD routes
 router.get("/", AircraftController.browse);
+router.get("/manufacturers", AircraftController.getManufacturers);
 router.get("/:id", AircraftController.read);
 router.post(
   "/",

@@ -93,47 +93,23 @@ class UserController {
   //   }
   // };
 
-  // //  Checks that the data recieved is valid, checks if the account to be modified exists, then updates the dabase with the new data
-  // static edit = async (req, res) => {
-  //   const data = req.body;
-  //   const userId = parseInt(req.params.id, 10);
-  //   const imgToDelete = data.imgLink
-  //     ? await models.user.findImgToDelete(userId).then((user) => {
-  //         return user?.imgLink;
-  //       })
-  //     : null;
-  //   const pathImage = data.imgLink
-  //     ? path.join(__dirname, `../../public/assets/images/users/${data.imgLink}`)
-  //     : null;
-  //   try {
-  //     const validData = await models.user.validate(data, false);
-  //     if (!validData) {
-  //       if (data.imgLink) deleteImage(pathImage);
-  //       return res.status(400).send("Data provided is invalid or incomplete");
-  //     }
-  //     const accountExists = await models.user.accountExistCheck(userId);
-  //     if (!accountExists) {
-  //       if (data.imgLink) deleteImage(pathImage);
-  //       return res
-  //         .status(404)
-  //         .send(
-  //           `Can not edit user ${req.params.id}, because it does not exists`
-  //         );
-  //     }
-  //     await models.user.updateUser(data, userId);
-  //     if (imgToDelete)
-  //       deleteImage(
-  //         path.join(
-  //           __dirname,
-  //           `../../public/assets/images/users/${imgToDelete}`
-  //         )
-  //       );
-  //     return res.sendStatus(200);
-  //   } catch (err) {
-  //     if (data.imgLink) deleteImage(pathImage);
-  //     return res.status(500).send(err);
-  //   }
-  // };
+  //  Checks that the data recieved is valid, checks if the account to be modified exists, then updates the dabase with the new data
+  static edit = async (req, res) => {
+    const { role } = req.body;
+
+    if (!role || !req.params.id) {
+      return res.status(400).send("Please provide a role and an ID");
+    }
+
+    try {
+      await models.user
+        .updateUser({ role }, parseInt(req.params.id, 10))
+        .then((result) => result);
+      return res.status(200).send("modified user");
+    } catch (err) {
+      return res.status(500).send(err);
+    }
+  };
 
   // //  Checks if the account to be deleted exists, then checks if it is an admin or super-admin, if the user who wants to delete is an admin, he can only delete non-admin accounts, if he is a super-admin, he can delete admin and non-admin accounts. Super-admin account CAN NOT be deleted!
   // static delete = async (req, res) => {

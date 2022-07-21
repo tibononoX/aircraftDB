@@ -16,6 +16,10 @@ class AircraftManager extends AbstractManager {
     a.year FROM ${this.table} a LEFT JOIN manufacturer m ON m.id = a.manufacturer_id LEFT JOIN type t ON t.id = a.type_id`);
   }
 
+  findAllManufacturers() {
+    return this.connection.query(`SELECT * FROM manufacturer`);
+  }
+
   insert(aircraft) {
     return this.connection.query(`INSERT INTO ${AircraftManager.table} SET ?`, [
       aircraft,

@@ -23,12 +23,11 @@ code {
   flex-direction: column;
   align-items: center;
   justify-content: flex-start;
-  min-height: 100vh;
+  // min-height: 100vh;
 
   .page {
     width: 100%;
     height: 100%;
-    padding-bottom: 600px;
   }
 }
 
