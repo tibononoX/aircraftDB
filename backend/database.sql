@@ -22,6 +22,12 @@ VALUES
     "acdb-admin@gmail.com",
     '$argon2id$v=19$m=4096,t=3,p=1$s9ymCm7z/yv4BQhltYWmoA$iC3/6d439LFJ8plXiqi0fXw9996tdASd3pda0q8EYpY',
     "Admin"
+  ),
+  (
+    "Tibuntu",
+    "tibuntu@gmail.com",
+    '$argon2id$v=19$m=4096,t=3,p=1$s9ymCm7z/yv4BQhltYWmoA$iC3/6d439LFJ8plXiqi0fXw9996tdASd3pda0q8EYpY',
+    "User"
   );
 
 CREATE TABLE

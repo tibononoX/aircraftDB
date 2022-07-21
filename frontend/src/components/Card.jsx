@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import axios from "@services/axios";
 import "@styles/Card.scss";
 
@@ -17,6 +17,7 @@ const Card = ({
   fetchUserById,
 }) => {
   const query = useQuery();
+  const navigate = useNavigate();
 
   const deleteContent = async (contentType, id) => {
     if (
@@ -26,6 +27,8 @@ const Card = ({
       if (type === "user") {
         return fetchUsers();
       }
+      fetchAircraftById(id);
+      navigate("?tab=aircrafts&edit=newAircraft");
       return fetchAircrafts();
     }
     return null;
@@ -65,13 +68,18 @@ const Card = ({
         return (
           <li>
             <NavLink
-              className="listItem aircraft"
+              className={
+                parseInt(query.get("id"), 10) === data.id
+                  ? "listItem navActive"
+                  : "listItem"
+              }
               to={`?tab=aircrafts&edit=aircraft&id=${data.id}`}
               onClick={() => fetchAircraftById(data.id)}
             >
               <div className="info">
                 <h4>{data.name}</h4>
                 <p>{data.manufacturer}</p>
+                <p>{data.type}</p>
               </div>
               <div className="interaction">
                 <button

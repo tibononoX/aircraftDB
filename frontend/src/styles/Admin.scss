@@ -32,9 +32,17 @@
     }
 
     .edit-side {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
       width: 55%;
       height: 100%;
       padding: 4px;
+
+      a {
+        text-align: right;
+        margin: 0;
+      }
     }
   }
 }

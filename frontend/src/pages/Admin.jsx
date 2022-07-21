@@ -140,6 +140,17 @@ const Admin = () => {
             type="aircraft"
             id={query.get("id")}
             fetchAircrafts={fetchAircrafts}
+            fetchAircraftById={fetchAircraftById}
+            formData={formData}
+          />
+        );
+      case "newAircraft":
+        return (
+          <EditForm
+            type="newAircraft"
+            id={query.get("id")}
+            fetchAircrafts={fetchAircrafts}
+            fetchAircraftById={fetchAircraftById}
             formData={formData}
           />
         );
@@ -154,13 +165,24 @@ const Admin = () => {
       <section className="admin-page">
         <header className="admin-nav">
           <NavLink to="?tab=users">Manage users</NavLink>
-          <NavLink to="?tab=aircrafts">Manage aircrafts</NavLink>
+          <NavLink to="?tab=aircrafts&edit=newAircraft">
+            Manage aircrafts
+          </NavLink>
         </header>
         <h1>{query.get("tab") === "users" ? "Users" : "Aircrafts"}</h1>
         <div className="admin-tools">
           <div className="tab">
             {handleTab()}
-            <div className="edit-side">{handleForm()}</div>
+
+            <div className="edit-side">
+              {query.get("tab") === "aircrafts" &&
+                query.get("edit") !== "newAircraft" && (
+                  <NavLink to="?tab=aircrafts&edit=newAircraft">
+                    Add a new aircraft
+                  </NavLink>
+                )}
+              {handleForm()}
+            </div>
           </div>
         </div>
       </section>

@@ -11,6 +11,7 @@ const router = express.Router();
 //  Aircraft CRUD routes
 router.get("/", AircraftController.browse);
 router.get("/manufacturers", AircraftController.getManufacturers);
+router.get("/types", AircraftController.getTypes);
 router.get("/:id", AircraftController.read);
 router.post(
   "/",
@@ -23,8 +24,8 @@ router.post(
 router.put(
   "/:id",
   AuthController.isUserConnected,
-  AuthController.isUserAllowedToModifyUser,
-  FileController.uploadAircraft,
+  AuthController.isUserAdmin,
+  // FileController.uploadAircraft,
   AircraftController.edit
 );
 router.delete(

@@ -55,6 +55,7 @@ class FileController {
         if (err) {
           return res.status(500).send(err.message);
         }
+        req.body = { ...JSON.parse(req.body.aircraftData) };
         return next();
       });
     }

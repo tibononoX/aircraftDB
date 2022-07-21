@@ -3,7 +3,14 @@ import axios from "@services/axios";
 import "@styles/EditForm.scss";
 import AcForm from "./AcForm";
 
-const EditForm = ({ type, id, formData, fetchUsers, fetchAircrafts }) => {
+const EditForm = ({
+  type,
+  id,
+  formData,
+  fetchUsers,
+  fetchAircrafts,
+  fetchAircraftById,
+}) => {
   const [newRole, setNewRole] = useState();
   const editUserRole = async (e) => {
     e.preventDefault();
@@ -18,7 +25,9 @@ const EditForm = ({ type, id, formData, fetchUsers, fetchAircrafts }) => {
   };
 
   useEffect(() => {
-    setNewRole(formData.role);
+    if (formData) {
+      setNewRole(formData.role);
+    }
   }, [formData]);
 
   switch (type) {
@@ -40,7 +49,25 @@ const EditForm = ({ type, id, formData, fetchUsers, fetchAircrafts }) => {
         </form>
       );
     case "aircraft":
-      return <AcForm formData={formData} fetchAircrafts={fetchAircrafts} />;
+      return (
+        <AcForm
+          type="aircraft"
+          formData={formData}
+          fetchAircrafts={fetchAircrafts}
+          id={id}
+          fetchAircraftById={fetchAircraftById}
+        />
+      );
+    case "newAircraft":
+      return (
+        <AcForm
+          type="newAircraft"
+          formData={formData}
+          fetchAircrafts={fetchAircrafts}
+          id={id}
+          fetchAircraftById={fetchAircraftById}
+        />
+      );
     default:
       return null;
   }

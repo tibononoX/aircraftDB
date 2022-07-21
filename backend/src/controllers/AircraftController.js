@@ -37,6 +37,19 @@ class AircraftController {
     }
   };
 
+  static getTypes = async (req, res) => {
+    try {
+      const types = await models.aircraft
+        .findAllTypes()
+        .then(([typesList]) => typesList);
+
+      res.status(200).send(types);
+    } catch (err) {
+      console.error(err);
+      res.sendStatus(500);
+    }
+  };
+
   static read = (req, res) => {
     models.aircraft
       .find(req.params.id)
@@ -76,7 +89,7 @@ class AircraftController {
   };
 
   static newAircraft = async (req, res) => {
-    const aircraft = JSON.parse(JSON.stringify(req.body));
+    const aircraft = req.body;
     const { files } = req;
     const imageName = files
       ? files.map((file) => {
@@ -97,15 +110,14 @@ class AircraftController {
         return res.status(400).send("Error while creating aircraft");
       }
 
-      const images =
-        req.query.file === "aircraft"
-          ? files.map((file) => {
-              return {
-                aircraft_id: newAircraft.insertId,
-                imgLink: file.filename,
-              };
-            })
-          : null;
+      const images = files
+        ? files.map((file) => {
+            return {
+              aircraft_id: newAircraft.insertId,
+              imgLink: file.filename,
+            };
+          })
+        : null;
       if (images) {
         await images.forEach(async (image) => {
           await models.image.insert(image);
@@ -113,13 +125,13 @@ class AircraftController {
       }
       return res.status(201).send("Aircraft created");
     } catch (err) {
-      // if (err) {
-      //   await imageName.forEach((image) =>
-      //     deleteImage(
-      //       path.join(__dirname, `../../public/assets/images/${image}`)
-      //     )
-      //   );
-      // }
+      if (imageName) {
+        await imageName.forEach((image) =>
+          deleteImage(
+            path.join(__dirname, `../../public/assets/images/projects/${image}`)
+          )
+        );
+      }
       return res.sendStatus(500);
     }
   };
