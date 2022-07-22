@@ -9,7 +9,8 @@
   text-decoration: none;
 
   &.navActive {
-    background-color: rgb(218, 218, 218);
+    background-color: #4b86b4;
+    color: white;
   }
 
   .info {
@@ -19,9 +20,20 @@
   .interaction {
     display: flex;
     width: fit-content;
+
     button {
-      width: 55px;
+      padding: 4px 8px;
       height: fit-content;
+      border: none;
+      color: white;
+      font-size: 0.8rem;
+      font-weight: 600;
+      background-color: #b44b52;
+
+      &:hover {
+        cursor: pointer;
+        background-color: #f00e1d;
+      }
 
       &:hover {
         cursor: pointer;

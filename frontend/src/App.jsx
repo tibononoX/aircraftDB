@@ -14,6 +14,7 @@ import {
   Navigate,
 } from "react-router-dom";
 import UserContext from "@contexts/UserContext";
+import AcInfo from "@contexts/AcInfo";
 import "@styles/App.scss";
 import Aircraft from "@pages/Aircraft";
 
@@ -25,36 +26,39 @@ function App() {
     <div className="App">
       {/* eslint-disable-next-line */}
       <UserContext.Provider value={{ user, setUser }}>
-        <Router>
-          <Routes>
-            <Route
-              path="/"
-              element={<Homepage setAircraftInfo={setAircraftInfo} />}
-            />
-            {user && user.role === "Admin" && (
-              <Route path="/admin" element={<Admin />} />
-            )}
-            <Route
-              path="/aircraft/:id"
-              element={<Aircraft data={aircraftInfo} />}
-            />
-            <Route
-              path="/catalog"
-              element={
-                <Catalog
-                  aircraftInfo={aircraftInfo}
-                  setAircraftInfo={setAircraftInfo}
-                />
-              }
-            />
-            <Route path="/api" element={<Api />} />
-            <Route path="/contact" element={<Contact />} />
-            {!user && <Route path="/signup" element={<Signup />} />}
-            {!user && <Route path="/login" element={<Login />} />}
-            {user && <Route path="/logout" element={<Logout />} />}
-            <Route path="*" element={<Navigate to="/" />} />
-          </Routes>
-        </Router>
+        {/* eslint-disable-next-line */}
+        <AcInfo.Provider value={{ aircraftInfo, setAircraftInfo }}>
+          <Router>
+            <Routes>
+              <Route
+                path="/"
+                element={<Homepage setAircraftInfo={setAircraftInfo} />}
+              />
+              {user && user.role === "Admin" && (
+                <Route path="/admin" element={<Admin />} />
+              )}
+              <Route
+                path="/aircraft/:id"
+                element={<Aircraft data={aircraftInfo} />}
+              />
+              <Route
+                path="/catalog"
+                element={
+                  <Catalog
+                    aircraftInfo={aircraftInfo}
+                    setAircraftInfo={setAircraftInfo}
+                  />
+                }
+              />
+              <Route path="/api" element={<Api />} />
+              <Route path="/contact" element={<Contact />} />
+              {!user && <Route path="/signup" element={<Signup />} />}
+              {!user && <Route path="/login" element={<Login />} />}
+              {user && <Route path="/logout" element={<Logout />} />}
+              <Route path="*" element={<Navigate to="/" />} />
+            </Routes>
+          </Router>
+        </AcInfo.Provider>
       </UserContext.Provider>
     </div>
   );

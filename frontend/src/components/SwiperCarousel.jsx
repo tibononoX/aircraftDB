@@ -31,7 +31,7 @@ const SwiperCarousel = ({ aircraftList, aircraftInfo, setAircraftInfo }) => {
       slidesPerView={handleCarouselLength()}
       navigation
       autoplay={{
-        delay: 2500,
+        delay: 3500,
         disableOnInteraction: true,
       }}
       scrollbar={{ draggable: true }}

@@ -123,6 +123,20 @@ class UserController {
     }
   };
 
+  static delete = async (req, res) => {
+    try {
+      const deletedUser = await models.user.delete(req.params.id);
+
+      if (!deletedUser) {
+        return res.status(404).sned("User not found");
+      }
+
+      return res.sendStatus(204);
+    } catch (err) {
+      return res.sendStatus(500);
+    }
+  };
+
   // //  Checks if the account to be deleted exists, then checks if it is an admin or super-admin, if the user who wants to delete is an admin, he can only delete non-admin accounts, if he is a super-admin, he can delete admin and non-admin accounts. Super-admin account CAN NOT be deleted!
   // static delete = async (req, res) => {
   //   const imgToDelete = await models.user

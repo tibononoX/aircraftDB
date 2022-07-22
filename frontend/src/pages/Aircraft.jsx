@@ -71,12 +71,14 @@ const Aircraft = ({ data }) => {
               {data.manufacturer}{" "}
               <span className="aircraft-title">{data.name}</span>
             </h1>
-            <img
-              src={`${import.meta.env.VITE_BACKEND_ASSETS}images/aircraft/${
-                data.imgLink
-              }`}
-              alt=""
-            />
+            {data.imgLink && (
+              <img
+                src={`${import.meta.env.VITE_BACKEND_ASSETS}images/aircraft/${
+                  data.imgLink
+                }`}
+                alt=""
+              />
+            )}
             <div className="description">
               <h2>Description</h2>
               <p className="aircraft-desc">{data.desc}</p>

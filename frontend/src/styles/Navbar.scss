@@ -17,12 +17,13 @@
   }
 
   .buttonAdmin {
-    left: 44%;
-    transform: translateX(-50%);
-    position: absolute;
     background-color: #e7eff6;
     color: black;
     width: 110px;
+
+    &:hover {
+      color: white;
+    }
 
     &.navActive {
       color: white;

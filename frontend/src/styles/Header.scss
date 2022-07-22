@@ -14,4 +14,59 @@
     font-weight: 700;
     margin: 12px;
   }
+
+  .searchContainer {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    margin-left: 24px;
+
+    .searchList {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      transform: translateY(100%);
+      width: 100%;
+      background-color: white;
+      z-index: 500;
+      max-height: 60vh;
+      overflow-y: auto;
+
+      li {
+        border-top: solid 1px rgb(189, 189, 189);
+        position: relative;
+        padding: 8px;
+        display: flex;
+
+        &:hover {
+          background-color: rgb(241, 241, 241);
+        }
+
+        a {
+          margin: 0;
+          padding: 0;
+          text-decoration: none;
+          color: black;
+        }
+
+        .searchImage {
+          position: absolute;
+          max-width: 42px;
+        }
+
+        .searchInfoText {
+          margin-left: 50px;
+
+          p {
+            color: rgb(95, 95, 95);
+          }
+        }
+      }
+    }
+
+    .searchBar {
+      width: 300px;
+      padding: 6px;
+    }
+  }
 }
