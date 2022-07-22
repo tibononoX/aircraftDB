@@ -29,20 +29,22 @@
     width: 90%;
     max-width: 60rem;
     height: 90%;
-    background-color: rgb(235, 235, 235);
+    background-color: white;
 
     .tab {
       display: flex;
       flex-direction: row;
       justify-content: space-between;
-      padding: 8px;
+      padding: 32px;
       width: 100%;
+      box-shadow: 4px 4px 14px 0px rgb(197, 197, 197);
 
       .contentList {
         background-color: white;
         padding: 4px;
         overflow-y: auto;
         width: 40%;
+        box-shadow: 4px 4px 28px 0px rgb(197, 197, 197);
       }
     }
 

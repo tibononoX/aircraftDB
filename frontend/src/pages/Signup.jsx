@@ -39,50 +39,63 @@ const Signup = () => {
     };
 
     try {
-      axios
+      const register = await axios
         .post(`users/`, userCredit, {
           withCredentials: true,
         })
-        // eslint-disable-next-line no-restricted-syntax
-        // alert("Successfully logged in");
-        .dispatch({ type: "RESET_FORM" });
-      return navigate("/");
+        .then((result) => result.data);
+      if (register) {
+        dispatch({ type: "RESET_FORM" });
+        return navigate("/");
+      }
     } catch (err) {
       return alert(err?.response.data);
     }
+    return null;
   };
 
   return (
     <div className="page">
       <Header />
+      <h1>Sign up</h1>
       <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          placeholder="username"
-          required
-          value={formData.username}
-          onChange={(e) =>
-            dispatch({ type: "UPDATE_USERNAME", payload: e.target.value })
-          }
-        />
-        <input
-          type="email"
-          placeholder="email"
-          required
-          value={formData.email}
-          onChange={(e) =>
-            dispatch({ type: "UPDATE_EMAIL", payload: e.target.value })
-          }
-        />
-        <input
-          type="password"
-          placeholder="password"
-          required
-          value={formData.password}
-          onChange={(e) =>
-            dispatch({ type: "UPDATE_PASSWORD", payload: e.target.value })
-          }
-        />
+        <label htmlFor="username">
+          Username:
+          <input
+            type="text"
+            placeholder="Username"
+            required
+            value={formData.username}
+            onChange={(e) =>
+              dispatch({ type: "UPDATE_USERNAME", payload: e.target.value })
+            }
+          />
+        </label>
+        <label htmlFor="email">
+          Email:
+          <input
+            type="email"
+            placeholder="Email"
+            required
+            value={formData.email}
+            onChange={(e) =>
+              dispatch({ type: "UPDATE_EMAIL", payload: e.target.value })
+            }
+          />
+        </label>
+        <label htmlFor="password">
+          Password:
+          <input
+            type="password"
+            placeholder="Password"
+            required
+            value={formData.password}
+            onChange={(e) =>
+              dispatch({ type: "UPDATE_PASSWORD", payload: e.target.value })
+            }
+          />
+        </label>
+
         <button type="submit">Sign up</button>
       </form>
     </div>

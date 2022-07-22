@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import axios from "@services/axios";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import Header from "@components/Header";
 import "@styles/Homepage.scss";
 import SwiperCarousel from "@components/SwiperCarousel";
@@ -8,6 +8,7 @@ import SwiperCarousel from "@components/SwiperCarousel";
 const Homepage = ({ setAircraftInfo, aircraftInfo }) => {
   const [aircraftList, setAircraftList] = useState();
   const [userCount, setUserCount] = useState();
+  const navigate = useNavigate();
 
   const fetchAircrafts = async () => {
     try {
@@ -35,6 +36,16 @@ const Homepage = ({ setAircraftInfo, aircraftInfo }) => {
     } catch (err) {
       return alert(err.reponse.data);
     }
+  };
+
+  const handleRandomClick = async () => {
+    const randomId = Math.floor(Math.random() * aircraftList.length) + 1;
+    const acInfo = aircraftList
+      .filter((aircraft) => aircraft.id === randomId)
+      .map((aircraft) => aircraft);
+
+    setAircraftInfo(acInfo[0]);
+    navigate(`/aircraft/${randomId}`);
   };
 
   useEffect(() => {
@@ -80,7 +91,13 @@ const Homepage = ({ setAircraftInfo, aircraftInfo }) => {
           <NavLink className="button" to="/catalog">
             BROWSE AIRCRAFT LIST
           </NavLink>
-          <NavLink to="/catalog">I'd rather get surprised!</NavLink>
+          <button
+            className="randomAircraft"
+            type="button"
+            onClick={() => handleRandomClick()}
+          >
+            I'd rather get surprised!
+          </button>
         </div>
         <section className="aircraft-carousel">
           <h1>Some random aircrafts ...</h1>

@@ -113,7 +113,7 @@ const AcForm = ({ type, formData, fetchAircrafts, id, fetchAircraftById }) => {
           .then((response) => response.data);
         if (newAircraft) {
           dispatch({ type: "RESET_FORM" });
-          alert("Nouveau projet ajouté !");
+          alert("New aircraft added !");
           return fetchAircrafts();
         }
       } catch (err) {

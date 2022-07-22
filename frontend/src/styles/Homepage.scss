@@ -57,12 +57,24 @@
 
     a {
       text-decoration: none;
+    }
+
+    .randomAircraft {
+      background-color: none;
+      border: none;
+      text-decoration: none;
       color: black;
+      font-size: 1rem;
+
+      &:hover {
+        color: rgb(80, 80, 80);
+        cursor: pointer;
+      }
     }
   }
 
   .aircraft-carousel {
-    margin-top: 20px;
+    margin-top: 10px;
     min-height: 400px;
     max-width: 100%;
 

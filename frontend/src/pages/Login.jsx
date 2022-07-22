@@ -55,25 +55,34 @@ const Login = () => {
   return (
     <div className="page">
       <Header />
+      <h1>Log in</h1>
       <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          placeholder="email"
-          required
-          value={formData.email}
-          onChange={(e) =>
-            dispatch({ type: "UPDATE_EMAIL", payload: e.target.value })
-          }
-        />
-        <input
-          type="password"
-          placeholder="password"
-          required
-          value={formData.password}
-          onChange={(e) =>
-            dispatch({ type: "UPDATE_PASSWORD", payload: e.target.value })
-          }
-        />
+        <label htmlFor="email">
+          Email:
+          <input
+            id="email"
+            type="email"
+            placeholder="Email"
+            required
+            value={formData.email}
+            onChange={(e) =>
+              dispatch({ type: "UPDATE_EMAIL", payload: e.target.value })
+            }
+          />
+        </label>
+        <label htmlFor="password">
+          Password:
+          <input
+            id="password"
+            type="password"
+            placeholder="Password"
+            required
+            value={formData.password}
+            onChange={(e) =>
+              dispatch({ type: "UPDATE_PASSWORD", payload: e.target.value })
+            }
+          />
+        </label>
         <button type="submit">Log in</button>
       </form>
     </div>

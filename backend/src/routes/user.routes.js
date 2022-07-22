@@ -29,12 +29,11 @@ router.put(
   // FileController.uploadUser,
   UserController.edit
 );
-// router.delete(
-//   "/:id",
-//   AuthController.isUserConnected,
-//   AuthController.isUserAuthorized,
-//   AuthController.isUserAdmin,
-//   UserController.delete
-// );
+router.delete(
+  "/:id",
+  AuthController.isUserConnected,
+  AuthController.isUserAdmin,
+  UserController.delete
+);
 
 module.exports = router;
