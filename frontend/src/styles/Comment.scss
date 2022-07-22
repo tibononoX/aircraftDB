@@ -1,0 +1,85 @@
+.comment {
+  position: relative;
+  width: 90%;
+  height: fit-content;
+  padding: 10px;
+  background-color: white;
+  margin: 6px;
+  box-shadow: 4px 4px 14px 0px rgb(197, 197, 197);
+  display: flex;
+  flex-direction: column;
+
+  .commentContent {
+    margin: 0 160px 12px 0;
+  }
+
+  .commentInfo {
+    font-size: 0.8rem;
+    color: rgb(122, 122, 122);
+
+    .bold {
+      font-weight: 800;
+    }
+  }
+
+  .interactions {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+
+  .deleteComment {
+    margin: 8px;
+    padding: 4px 8px;
+    margin: 4px;
+    border: none;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background-color: #b44b52;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #df7078;
+    }
+  }
+
+  .editComment {
+    bottom: 0;
+    margin: 8px;
+    padding: 4px 8px;
+    margin: 4px;
+    border: none;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background-color: #2a4d69;
+    text-decoration: none;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #63ace5;
+    }
+  }
+
+  p {
+    margin: 4px;
+    user-select: none;
+  }
+
+  .like {
+    margin: 8px;
+    padding: 4px 8px;
+    margin: 4px;
+    border: none;
+    color: white;
+    font-size: 0.8rem;
+    font-weight: 600;
+    background-color: #2a4d69;
+
+    &:hover {
+      cursor: pointer;
+      background-color: #63ace5;
+    }
+  }
+}

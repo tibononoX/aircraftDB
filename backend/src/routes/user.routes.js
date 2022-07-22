@@ -16,21 +16,19 @@ router.get(
   AuthController.isUserAdmin,
   UserController.browse
 );
+router.get("/userNumber", UserController.getLength);
 router.get(
   "/:id",
   AuthController.isUserConnected,
-  AuthController.isUserAllowedToGet,
+  AuthController.isUserAdmin,
   UserController.read
 );
-// router.put(
-//   //  This route accepts a query parameter available only to admins, it is used to authorize or de-authorize a user: ?authorize=0 or 1
-//   "/:id",
-//   AuthController.isUserConnected,
-//   AuthController.isUserAllowedToModifyUser,
-//   UserController.handleAuthorization,
-//   FileController.uploadUser,
-//   UserController.edit
-// );
+router.put(
+  "/:id",
+  AuthController.isUserConnected,
+  // FileController.uploadUser,
+  UserController.edit
+);
 // router.delete(
 //   "/:id",
 //   AuthController.isUserConnected,

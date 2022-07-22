@@ -1,0 +1,49 @@
+.catalog-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  max-height: calc(100vh - 70px);
+  overflow-y: auto;
+  padding: 0 18px;
+
+  .info-header {
+    width: 80%;
+    height: fit-content;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+
+    p {
+      text-align: center;
+      width: 100%;
+      background: none;
+    }
+  }
+
+  .carousel-list {
+    width: 100%;
+
+    h1 {
+      padding: 18px;
+      font-size: 1.5rem;
+      font-weight: 500;
+      width: 100%;
+      background-color: #3f5e78;
+      color: white;
+    }
+
+    .aircraft-carousel {
+      margin-top: 20px;
+      min-height: 400px;
+      max-width: 100%;
+
+      .swiper {
+        margin: 18px;
+        padding-bottom: 20px;
+      }
+    }
+  }
+}
