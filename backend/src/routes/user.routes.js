@@ -16,6 +16,7 @@ router.get(
   AuthController.isUserAdmin,
   UserController.browse
 );
+router.get("/userNumber", UserController.getLength);
 router.get(
   "/:id",
   AuthController.isUserConnected,

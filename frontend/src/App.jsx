@@ -14,11 +14,12 @@ import {
   Navigate,
 } from "react-router-dom";
 import UserContext from "@contexts/UserContext";
-
 import "@styles/App.scss";
+import Aircraft from "@pages/Aircraft";
 
 function App() {
   const [user, setUser] = useState();
+  const [aircraftInfo, setAircraftInfo] = useState();
 
   return (
     <div className="App">
@@ -26,11 +27,26 @@ function App() {
       <UserContext.Provider value={{ user, setUser }}>
         <Router>
           <Routes>
-            <Route path="/" element={<Homepage />} />
+            <Route
+              path="/"
+              element={<Homepage setAircraftInfo={setAircraftInfo} />}
+            />
             {user && user.role === "Admin" && (
               <Route path="/admin" element={<Admin />} />
             )}
-            <Route path="/catalog" element={<Catalog />} />
+            <Route
+              path="/aircraft/:id"
+              element={<Aircraft data={aircraftInfo} />}
+            />
+            <Route
+              path="/catalog"
+              element={
+                <Catalog
+                  aircraftInfo={aircraftInfo}
+                  setAircraftInfo={setAircraftInfo}
+                />
+              }
+            />
             <Route path="/api" element={<Api />} />
             <Route path="/contact" element={<Contact />} />
             {!user && <Route path="/signup" element={<Signup />} />}

@@ -11,31 +11,72 @@ const Navbar = () => {
     <ul className="nav-list">
       {user && user.role === "Admin" && (
         <li className="nav-element">
-          <NavLink to="/admin?tab=users">Admin</NavLink>
+          <NavLink
+            className={(nav) =>
+              nav.isActive ? "buttonAdmin navActive" : "buttonAdmin"
+            }
+            to="/admin?tab=users"
+          >
+            Admin
+          </NavLink>
         </li>
       )}
       <li className="nav-element">
-        <NavLink to="/">Home</NavLink>
+        <NavLink className={(nav) => (nav.isActive ? "navActive" : "")} to="/">
+          Home
+        </NavLink>
       </li>
       <li className="nav-element">
-        <NavLink to="/catalog">Catalog</NavLink>
+        <NavLink
+          className={(nav) => (nav.isActive ? "navActive" : "")}
+          to="/catalog"
+        >
+          Catalog
+        </NavLink>
       </li>
       <li className="nav-element">
-        <NavLink to="/api">API</NavLink>
+        <a
+          href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          target="_blank"
+          rel="noreferrer"
+          className={(nav) => (nav.isActive ? "navActive" : "")}
+        >
+          API
+        </a>
       </li>
       <li className="nav-element">
-        <NavLink to="/contact">Contact</NavLink>
+        <NavLink
+          className={(nav) => (nav.isActive ? "navActive" : "")}
+          to="/contact"
+        >
+          Contact
+        </NavLink>
       </li>
       {!user && (
         <li className="nav-element">
-          <NavLink to="/signup">Sign up</NavLink>
+          <NavLink
+            className={(nav) => (nav.isActive ? "navActive" : "")}
+            to="/signup"
+          >
+            Sign up
+          </NavLink>
         </li>
       )}
       <li className="nav-element">
         {!user ? (
-          <NavLink to="/login">Log in</NavLink>
+          <NavLink
+            className={(nav) => (nav.isActive ? "navActive" : "")}
+            to="/login"
+          >
+            Log in
+          </NavLink>
         ) : (
-          <NavLink to="/logout">Log out</NavLink>
+          <NavLink
+            className={(nav) => (nav.isActive ? "navActive" : "")}
+            to="/logout"
+          >
+            Log out
+          </NavLink>
         )}
       </li>
     </ul>

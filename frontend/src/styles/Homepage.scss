@@ -5,7 +5,16 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  padding: 24px;
+  max-height: calc(100vh - 70px);
+  overflow-y: auto;
+  padding: 24px 18px;
+
+  .server-info {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 24px;
+  }
 
   .info-header {
     width: 50%;
@@ -13,15 +22,8 @@
     padding: 18px;
     display: flex;
     flex-direction: column;
-
-    .server-info {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-
-      p {
-      }
-    }
+    background-color: white;
+    box-shadow: 4px 4px 14px 0px rgb(197, 197, 197);
 
     .project-desc {
       width: 100%;
@@ -42,9 +44,11 @@
 
     .button {
       padding: 12px 24px;
-      background-color: red;
+      background-color: #63ace5;
       font-size: 2rem;
       color: white;
+      transition: 150ms;
+      box-shadow: 4px 4px 14px 0px rgb(197, 197, 197);
 
       &:hover {
         filter: brightness(105%);
@@ -54,6 +58,28 @@
     a {
       text-decoration: none;
       color: black;
+    }
+  }
+
+  .aircraft-carousel {
+    margin-top: 20px;
+    min-height: 400px;
+    max-width: 100%;
+
+    h1 {
+      font-size: 1.5rem;
+      font-weight: 500;
+      padding: 8px;
+      margin-bottom: 10px;
+      font-size: 1.5rem;
+      font-weight: 500;
+      width: 100%;
+      background-color: #3f5e78;
+      color: white;
+    }
+
+    .swiper {
+      padding-bottom: 20px;
     }
   }
 }

@@ -14,9 +14,21 @@ class UserController {
   //  Fetches the whole user list, only available to admins and super-admins. Admins can't read RPPS and Adeli numbers
   static browse = (req, res) => {
     return models.user
-      .findAll(req.userRole)
+      .findAll()
       .then(([rows]) => {
         res.send(rows);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.sendStatus(500);
+      });
+  };
+
+  static getLength = (req, res) => {
+    return models.user
+      .findAll()
+      .then(([rows]) => {
+        return res.send({ userNumber: rows.length });
       })
       .catch((err) => {
         console.error(err);

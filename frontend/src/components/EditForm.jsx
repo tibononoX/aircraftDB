@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import axios from "@services/axios";
 import "@styles/EditForm.scss";
 import AcForm from "./AcForm";
+import ManTypeForm from "./ManTypeForm";
 
 const EditForm = ({
   type,
@@ -10,6 +11,10 @@ const EditForm = ({
   fetchUsers,
   fetchAircrafts,
   fetchAircraftById,
+  fetchManufacturers,
+  fetchManufacturerById,
+  fetchTypes,
+  fetchTypeById,
 }) => {
   const [newRole, setNewRole] = useState();
   const editUserRole = async (e) => {
@@ -66,6 +71,46 @@ const EditForm = ({
           fetchAircrafts={fetchAircrafts}
           id={id}
           fetchAircraftById={fetchAircraftById}
+        />
+      );
+    case "manufacturer":
+      return (
+        <ManTypeForm
+          type="manufacturer"
+          formData={formData}
+          fetchManufacturers={fetchManufacturers}
+          id={id}
+          fetchManufacturerById={fetchManufacturerById}
+        />
+      );
+    case "newManufacturer":
+      return (
+        <ManTypeForm
+          type="newManufacturer"
+          formData={formData}
+          fetchManufacturers={fetchManufacturers}
+          id={id}
+          fetchManufacturerById={fetchManufacturerById}
+        />
+      );
+    case "type":
+      return (
+        <ManTypeForm
+          type="type"
+          formData={formData}
+          fetchTypes={fetchTypes}
+          id={id}
+          fetchTypeById={fetchTypeById}
+        />
+      );
+    case "newType":
+      return (
+        <ManTypeForm
+          type="newType"
+          formData={formData}
+          fetchTypes={fetchTypes}
+          id={id}
+          fetchTypeById={fetchTypeById}
         />
       );
     default:

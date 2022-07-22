@@ -1,17 +1,63 @@
+import { useState, useEffect } from "react";
+import axios from "@services/axios";
+import { NavLink } from "react-router-dom";
 import Header from "@components/Header";
 import "@styles/Homepage.scss";
-import { NavLink } from "react-router-dom";
+import SwiperCarousel from "@components/SwiperCarousel";
 
-const Homepage = () => {
+const Homepage = ({ setAircraftInfo, aircraftInfo }) => {
+  const [aircraftList, setAircraftList] = useState();
+  const [userCount, setUserCount] = useState();
+
+  const fetchAircrafts = async () => {
+    try {
+      const aircrafts = await axios
+        .get("aircrafts/", { withCredentials: true })
+        .then((result) => result.data);
+      if (aircrafts.length > 0) {
+        return setAircraftList(aircrafts);
+      }
+      return setAircraftList();
+    } catch (err) {
+      return alert(err.reponse.data);
+    }
+  };
+
+  const fetchUserNumber = async () => {
+    try {
+      const userLength = await axios
+        .get("users/userNumber", { withCredentials: true })
+        .then((result) => result.data);
+      if (userLength) {
+        return setUserCount(userLength);
+      }
+      return setAircraftList();
+    } catch (err) {
+      return alert(err.reponse.data);
+    }
+  };
+
+  useEffect(() => {
+    fetchAircrafts();
+    fetchUserNumber();
+  }, []);
+
   return (
     <div className="page">
       <Header />
       <section className="home-content">
+        <div className="server-info">
+          <h2>
+            {aircraftList ? aircraftList.length : "..."} aircraft
+            {aircraftList && aircraftList.length <= 1 ? "" : "s"} on the
+            database
+          </h2>
+          <h2>
+            {userCount ? userCount.userNumber : "..."} user
+            {userCount && userCount.userNumber <= 1 ? "" : "s"} registered
+          </h2>
+        </div>
         <header className="info-header">
-          <div className="server-info">
-            <h2>24 aircrafts on the database</h2>
-            <h2>13 users registered</h2>
-          </div>
           <div className="project-desc">
             <h2>About the project</h2>
             <p>
@@ -36,6 +82,14 @@ const Homepage = () => {
           </NavLink>
           <NavLink to="/catalog">I'd rather get surprised!</NavLink>
         </div>
+        <section className="aircraft-carousel">
+          <h1>Some random aircrafts ...</h1>
+          <SwiperCarousel
+            aircraftList={aircraftList}
+            aircraftInfo={aircraftInfo}
+            setAircraftInfo={setAircraftInfo}
+          />
+        </section>
       </section>
     </div>
   );

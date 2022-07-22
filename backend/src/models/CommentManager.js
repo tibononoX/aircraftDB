@@ -19,7 +19,7 @@ class CommentManager extends AbstractManager {
 
   findByAircraft(aircraftId) {
     return this.connection.query(
-      `SELECT c.id, u.username postedBy, a.name onAircraft, c.text, c.postedDate, c.editDate FROM ${CommentManager.table} c LEFT JOIN user u ON u.id = c.user_id LEFT JOIN aircraft a ON a.id = c.aircraft_id WHERE aircraft_id = ?`,
+      `SELECT c.id, u.username postedBy, u.id user_id, a.name onAircraft, c.text, c.postedDate, c.editDate FROM ${CommentManager.table} c LEFT JOIN user u ON u.id = c.user_id LEFT JOIN aircraft a ON a.id = c.aircraft_id WHERE aircraft_id = ?`,
       [aircraftId]
     );
   }

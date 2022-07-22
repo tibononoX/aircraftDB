@@ -10,11 +10,7 @@ class CommentController {
     try {
       const [comments] = await models.comment.findByAircraft(aircraftId);
       if (!comments.length) {
-        return res
-          .status(404)
-          .send(
-            "Aircraft ID not found or there is not comments for this aircraft"
-          );
+        return res.status(200).send([]);
       }
 
       return res.json(comments);
@@ -64,7 +60,7 @@ class CommentController {
   static newComment = (req, res) => {
     const comment = req.body;
 
-    if (!comment.text || !comment.idea_id) {
+    if (!comment.text || !comment.aircraft_id) {
       return res.sendStatus(400);
     }
     models.comment
@@ -106,7 +102,7 @@ class CommentController {
   static browseVote = async (req, res) => {
     const commentId = parseInt(req.params.ideaId, 10);
     try {
-      const [vote] = await models.idea.browseVote(commentId);
+      const [vote] = await models.comment.browseVote(commentId);
       return res.status(200).send(vote);
     } catch (err) {
       return res.status(500).send(err.message);

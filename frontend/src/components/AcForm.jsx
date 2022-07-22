@@ -163,8 +163,8 @@ const AcForm = ({ type, formData, fetchAircrafts, id, fetchAircraftById }) => {
     }
   }, [formData, id]);
 
-  const handleType = () => {
-    switch (type) {
+  const handleType = (select = type) => {
+    switch (select) {
       case "aircraft":
         return (
           <form className="edit-form" onSubmit={handleEditSubmit}>
@@ -242,95 +242,107 @@ const AcForm = ({ type, formData, fetchAircrafts, id, fetchAircraftById }) => {
         );
       case "newAircraft":
         return (
-          <form className="edit-form" onSubmit={handleNewSubmit}>
-            <label htmlFor="name">
-              Name:
-              <input
-                type="text"
-                name="name"
-                value={acData.name}
-                onChange={(e) =>
-                  dispatch({ type: "UPDATE_NAME", payload: e.target.value })
-                }
-              />
-            </label>
+          <>
+            <p>New aircraft</p>
+            <form className="edit-form" onSubmit={handleNewSubmit}>
+              <label htmlFor="name">
+                Name:
+                <input
+                  type="text"
+                  name="name"
+                  value={acData.name}
+                  onChange={(e) =>
+                    dispatch({ type: "UPDATE_NAME", payload: e.target.value })
+                  }
+                />
+              </label>
 
-            <label htmlFor="manufacturer">
-              Manufacturer:
-              <select
-                name="manufacturer"
-                value={acData.manufacturer_id}
-                onChange={(e) =>
-                  dispatch({ type: "UPDATE_MAN", payload: e.target.value })
-                }
-              >
-                {manufacturersList &&
-                  manufacturersList.map((manufacturer) => (
-                    <option value={manufacturer.id}>{manufacturer.name}</option>
-                  ))}
-              </select>
-            </label>
+              <label htmlFor="manufacturer">
+                Manufacturer:
+                <select
+                  name="manufacturer"
+                  value={acData.manufacturer_id}
+                  onChange={(e) =>
+                    dispatch({ type: "UPDATE_MAN", payload: e.target.value })
+                  }
+                >
+                  {manufacturersList &&
+                    manufacturersList.map((manufacturer) => (
+                      <option value={manufacturer.id}>
+                        {manufacturer.name}
+                      </option>
+                    ))}
+                </select>
+              </label>
 
-            <label htmlFor="type">
-              Aircraft type:
-              <select
-                name="type"
-                value={acData.type_id}
-                onChange={(e) =>
-                  dispatch({ type: "UPDATE_TYPE", payload: e.target.value })
-                }
-              >
-                {typesList &&
-                  typesList.map((acType) => (
-                    <option value={acType.id}>{acType.name}</option>
-                  ))}
-              </select>
-            </label>
+              <label htmlFor="type">
+                Aircraft type:
+                <select
+                  name="type"
+                  value={acData.type_id}
+                  onChange={(e) =>
+                    dispatch({ type: "UPDATE_TYPE", payload: e.target.value })
+                  }
+                >
+                  {typesList &&
+                    typesList.map((acType) => (
+                      <option value={acType.id}>{acType.name}</option>
+                    ))}
+                </select>
+              </label>
 
-            <label htmlFor="desc">
-              Description:{" "}
-              <textarea
-                type="text"
-                name="desc"
-                value={acData.desc}
-                onChange={(e) =>
-                  dispatch({ type: "UPDATE_DESC", payload: e.target.value })
-                }
-                cols="30"
-                rows="10"
-              />
-            </label>
+              <label htmlFor="desc">
+                Description:{" "}
+                <textarea
+                  type="text"
+                  name="desc"
+                  value={acData.desc}
+                  onChange={(e) =>
+                    dispatch({ type: "UPDATE_DESC", payload: e.target.value })
+                  }
+                  cols="30"
+                  rows="10"
+                />
+              </label>
 
-            <label htmlFor="year">
-              First flight year:{" "}
-              <input
-                type="text"
-                name="year"
-                value={acData.year}
-                onChange={(e) =>
-                  dispatch({ type: "UPDATE_YEAR", payload: e.target.value })
-                }
-              />
-            </label>
-            <label htmlFor="images">
-              Add images:
-              <input
-                type="file"
-                name="images"
-                multiple
-                onChange={(e) => setFiles(e.target.files)}
-              />
-            </label>
+              <label htmlFor="year">
+                First flight year:{" "}
+                <input
+                  type="text"
+                  name="year"
+                  value={acData.year}
+                  onChange={(e) =>
+                    dispatch({ type: "UPDATE_YEAR", payload: e.target.value })
+                  }
+                />
+              </label>
+              <label htmlFor="images">
+                Add images:
+                <input
+                  type="file"
+                  name="images"
+                  multiple
+                  onChange={(e) => setFiles(e.target.files)}
+                />
+              </label>
 
-            <button type="submit">Add</button>
-          </form>
+              <button type="submit">Add</button>
+            </form>
+          </>
         );
       default:
         return <p>Loading ...</p>;
     }
   };
 
-  return formData && handleType();
+  const handleDisplay = () => {
+    if (formData) {
+      return handleType();
+    }
+    return handleType("newAircraft");
+  };
+
+  return handleDisplay();
 };
 
 export default AcForm;

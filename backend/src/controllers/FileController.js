@@ -18,12 +18,7 @@ const storage = multer.diskStorage({
     cb(null, path.join(__dirname, `../../public/assets/images/${fileName}`));
   },
   filename: (req, file, cb) => {
-    cb(
-      null,
-      `${Date.now()}-${Math.floor(Math.random() * (9999 - 0 + 1)) + 0}-${
-        file.originalname
-      }`
-    );
+    cb(null, `${file.originalname}`);
   },
 });
 
