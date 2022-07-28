@@ -33,7 +33,7 @@ const SwiperCarousel = ({
   return !fav ? (
     <Swiper
       modules={[Scrollbar, Navigation, Autoplay]}
-      spaceBetween={30}
+      spaceBetween={10}
       slidesPerView={handleCarouselLength()}
       navigation
       autoplay={{
@@ -59,7 +59,7 @@ const SwiperCarousel = ({
   ) : (
     <Swiper
       modules={[Scrollbar, Navigation]}
-      spaceBetween={30}
+      spaceBetween={10}
       slidesPerView={handleCarouselLength()}
       navigation
       scrollbar={{ draggable: true }}
