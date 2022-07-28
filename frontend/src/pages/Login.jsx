@@ -8,6 +8,7 @@ import "@styles/Login.scss";
 const formInitialState = {
   password: "",
   email: "",
+  remember: false,
 };
 
 const loginForm = (state, action) => {
@@ -16,6 +17,8 @@ const loginForm = (state, action) => {
       return { ...state, email: action.payload };
     case "UPDATE_PASSWORD":
       return { ...state, password: action.payload };
+    case "UPDATE_REMEMBER":
+      return { ...state, remember: action.payload };
     case "RESET_FORM":
       return { ...formInitialState };
     default:
@@ -34,6 +37,7 @@ const Login = () => {
     const userCredit = {
       password: formData.password,
       email: formData.email,
+      remember: formData.remember,
     };
 
     try {
@@ -46,7 +50,7 @@ const Login = () => {
       setUser(userData);
       // alert("Successfully logged in");
       dispatch({ type: "RESET_FORM" });
-      return navigate("/");
+      return navigate(-1);
     } catch (err) {
       return alert(err.response.data);
     }
@@ -83,6 +87,22 @@ const Login = () => {
             }
           />
         </label>
+        <div className="remember">
+          <label htmlFor="rememberMe">
+            <input
+              type="checkbox"
+              id="rememberMe"
+              name="rememberMe"
+              onChange={(e) =>
+                dispatch({
+                  type: "UPDATE_REMEMBER",
+                  payload: e.target.checked,
+                })
+              }
+            />
+            Se souvenir de moi
+          </label>
+        </div>
         <button type="submit">Log in</button>
       </form>
     </div>

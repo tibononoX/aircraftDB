@@ -8,6 +8,7 @@ const router = express.Router();
 router.post("/", UserController.register);
 router.post("/login", AuthController.login);
 router.get("/logout", AuthController.logout);
+router.get("/refreshToken", AuthController.refreshToken);
 
 //  User CRUD routes
 router.get(

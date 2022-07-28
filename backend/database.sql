@@ -84,7 +84,7 @@ It has a redesigned wing with a larger area, a wider wingspan, greater fuel capa
   (
     "Beechcraft King Air",
     9,
-    5,
+    6,
     "The Beechcraft King Air is a line of American utility aircraft produced by Beechcraft. The King Air line comprises a number of twin-turboprop models that have been divided into two families. The Model 90 and 100 series developed in the 1960s are known as King Airs, while the later T-tail Model 200 and 300 series were originally marketed as Super King Airs, with the name Super being dropped by Beechcraft in 1996 (although it is still often used to differentiate the 200 and 300 series King Airs from their smaller stablemates).
 
 The King Air was the first aircraft in its class and was produced continuously from 1964 to 2021. It outsold all of its turboprop competitors combined. It recently faced competition from jet aircraft such as the Embraer Phenom 100, Honda HA-420 HondaJet and Cessna Citation Mustang; as well as from newer turboprop aircraft including the Piaggio P180 Avanti, and single-engine Piper Malibu Meridian, Pilatus PC-12, and Socata TBM.",

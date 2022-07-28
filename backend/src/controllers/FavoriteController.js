@@ -4,11 +4,11 @@ class FavoriteController {
   static fav = async (req, res) => {
     const { aircraftId } = req.body;
     try {
-      const [checkVoted] = await models.favorite.checkAlreadyFaved({
+      const [checkFaved] = await models.favorite.checkAlreadyFaved({
         aircraftId,
         userId: req.userId,
       });
-      if (checkVoted.length) {
+      if (checkFaved.length) {
         await models.favorite.deleteFav({
           aircraftId,
           userId: req.userId,

@@ -5,7 +5,8 @@ class FavoriteManager extends AbstractManager {
 
   browse(userId) {
     return this.connection.query(
-      `SELECT a.id, a.name, m.name manufacturer, t.name type, a.desc, a.year FROM favorite fav LEFT JOIN aircraft a on a.id=fav.aircraft_id LEFT JOIN manufacturer m on m.id=a.manufacturer_id LEFT JOIN type t on t.id=a.type_id WHERE fav.user_id = ?`,
+      `SELECT a.id, a.name, m.name manufacturer, a.manufacturer_id, t.name type, a.type_id, a.desc,
+      a.year, i.imgLink FROM favorite fav LEFT JOIN aircraft a on a.id=fav.aircraft_id LEFT JOIN manufacturer m on m.id=a.manufacturer_id LEFT JOIN type t on t.id=a.type_id LEFT JOIN image i ON i.aircraft_id = a.id WHERE fav.user_id = ?`,
       [userId]
     );
   }

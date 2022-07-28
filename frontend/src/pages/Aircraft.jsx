@@ -4,6 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import { NavLink, useNavigate, useLocation } from "react-router-dom";
 import { useContext } from "react";
 import UserContext from "@contexts/UserContext";
+import UserFav from "@contexts/UserFav";
 import axios from "@services/axios";
 import formatDate from "@services/dateFormat";
 import "@styles/Aircraft.scss";
@@ -18,7 +19,20 @@ function useQuery() {
 const Aircraft = ({ data }) => {
   const query = useQuery();
   const { user } = useContext(UserContext);
+  const { userFav, fetchFavorites } = useContext(UserFav);
   const [commentList, setCommentList] = useState();
+
+  const addFavorite = async () => {
+    await axios
+      .post("favorites/add", { aircraftId: data.id }, { withCredentials: true })
+      .then((result) => result.data);
+    fetchFavorites();
+    return alert(
+      userFav.filter((aircraft) => aircraft.id === data.id).length !== 0
+        ? "Aircraft removed from favorites"
+        : "Aircraft added to favorites"
+    );
+  };
 
   const fetchComments = async () => {
     const commentListFetch = await axios
@@ -59,6 +73,18 @@ const Aircraft = ({ data }) => {
       )}
       {data && (
         <div className="acContent">
+          {user && (
+            <button
+              type="button"
+              className="addFav"
+              onClick={() => addFavorite()}
+            >
+              {userFav.filter((aircraft) => aircraft.id === data.id).length !==
+              0
+                ? "Remove from favorite"
+                : "Add to favorite"}
+            </button>
+          )}
           <section className="aircraft-info">
             <button
               type="button"

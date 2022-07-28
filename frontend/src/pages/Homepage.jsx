@@ -1,13 +1,18 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 import axios from "@services/axios";
 import { NavLink, useNavigate } from "react-router-dom";
+import AcInfo from "@contexts/AcInfo";
+import UserFav from "@contexts/UserFav";
 import Header from "@components/Header";
 import "@styles/Homepage.scss";
 import SwiperCarousel from "@components/SwiperCarousel";
 
-const Homepage = ({ setAircraftInfo, aircraftInfo }) => {
+const Homepage = () => {
   const [aircraftList, setAircraftList] = useState();
   const [userCount, setUserCount] = useState();
+  const { aircraftInfo, setAircraftInfo } = useContext(AcInfo);
+  const { userFav, fetchFavorites } = useContext(UserFav);
+
   const navigate = useNavigate();
 
   const fetchAircrafts = async () => {
@@ -51,6 +56,7 @@ const Homepage = ({ setAircraftInfo, aircraftInfo }) => {
   useEffect(() => {
     fetchAircrafts();
     fetchUserNumber();
+    fetchFavorites();
   }, []);
 
   return (
@@ -106,6 +112,16 @@ const Homepage = ({ setAircraftInfo, aircraftInfo }) => {
             aircraftInfo={aircraftInfo}
             setAircraftInfo={setAircraftInfo}
           />
+          {userFav.length !== 0 && (
+            <>
+              <h1>Your favorites</h1>
+              <SwiperCarousel
+                aircraftList={userFav}
+                aircraftInfo={aircraftInfo}
+                setAircraftInfo={setAircraftInfo}
+              />
+            </>
+          )}
         </section>
       </section>
     </div>
