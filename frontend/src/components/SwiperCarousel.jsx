@@ -6,10 +6,16 @@ import "swiper/css";
 import "swiper/css/scrollbar";
 import "swiper/css/navigation";
 import "swiper/css/autoplay";
+import "@styles/carousel.scss";
 
 import AircraftCard from "./AircraftCard";
 
-const SwiperCarousel = ({ aircraftList, aircraftInfo, setAircraftInfo }) => {
+const SwiperCarousel = ({
+  aircraftList,
+  aircraftInfo,
+  setAircraftInfo,
+  fav,
+}) => {
   const handleCarouselLength = () => {
     if (aircraftList) {
       switch (aircraftList.length) {
@@ -24,7 +30,7 @@ const SwiperCarousel = ({ aircraftList, aircraftInfo, setAircraftInfo }) => {
     return 1;
   };
 
-  return (
+  return !fav ? (
     <Swiper
       modules={[Scrollbar, Navigation, Autoplay]}
       spaceBetween={30}
@@ -34,6 +40,28 @@ const SwiperCarousel = ({ aircraftList, aircraftInfo, setAircraftInfo }) => {
         delay: 3500,
         disableOnInteraction: true,
       }}
+      scrollbar={{ draggable: true }}
+    >
+      {aircraftList &&
+        aircraftList
+          .sort((a, b) => 0.5 - Math.random())
+          .slice(0, 6)
+          .map((aircraft) => (
+            <SwiperSlide>
+              <AircraftCard
+                data={aircraft}
+                aircraftInfo={aircraftInfo}
+                setAircraftInfo={setAircraftInfo}
+              />
+            </SwiperSlide>
+          ))}
+    </Swiper>
+  ) : (
+    <Swiper
+      modules={[Scrollbar, Navigation]}
+      spaceBetween={30}
+      slidesPerView={handleCarouselLength()}
+      navigation
       scrollbar={{ draggable: true }}
     >
       {aircraftList &&

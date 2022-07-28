@@ -18,7 +18,7 @@ const CatalogCarousels = ({
       return (
         <section className="aircraft-carousel">
           <h1 title={type.desc}>
-            {filteredAcList.length} {type.name}
+            ({filteredAcList.length}) {type.name}
             {filteredAcList && filteredAcList.length <= 1 ? "" : "s"}
           </h1>
 

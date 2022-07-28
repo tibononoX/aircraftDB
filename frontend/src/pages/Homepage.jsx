@@ -108,14 +108,16 @@ const Homepage = () => {
         <section className="aircraft-carousel">
           <h1>Some random aircrafts ...</h1>
           <SwiperCarousel
+            fav={false}
             aircraftList={aircraftList}
             aircraftInfo={aircraftInfo}
             setAircraftInfo={setAircraftInfo}
           />
           {userFav.length !== 0 && (
             <>
-              <h1>Your favorites</h1>
+              <h1>Your favorites ({userFav.length})</h1>
               <SwiperCarousel
+                fav
                 aircraftList={userFav}
                 aircraftInfo={aircraftInfo}
                 setAircraftInfo={setAircraftInfo}

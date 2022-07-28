@@ -26,12 +26,7 @@ const Aircraft = ({ data }) => {
     await axios
       .post("favorites/add", { aircraftId: data.id }, { withCredentials: true })
       .then((result) => result.data);
-    fetchFavorites();
-    return alert(
-      userFav.filter((aircraft) => aircraft.id === data.id).length !== 0
-        ? "Aircraft removed from favorites"
-        : "Aircraft added to favorites"
-    );
+    return fetchFavorites();
   };
 
   const fetchComments = async () => {
@@ -80,9 +75,15 @@ const Aircraft = ({ data }) => {
               onClick={() => addFavorite()}
             >
               {userFav.filter((aircraft) => aircraft.id === data.id).length !==
-              0
-                ? "Remove from favorite"
-                : "Add to favorite"}
+              0 ? (
+                <img src="../src/assets/icons/favorite.png" alt="" />
+              ) : (
+                <img
+                  className="unFaved"
+                  src="../src/assets/icons/favorite.png"
+                  alt=""
+                />
+              )}
             </button>
           )}
           <section className="aircraft-info">

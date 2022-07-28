@@ -3,8 +3,10 @@ import "@styles/AircraftCard.scss";
 import axios from "@services/axios";
 import { NavLink } from "react-router-dom";
 import UserFav from "@contexts/UserFav";
+import UserContext from "@contexts/UserContext";
 
 const AircraftCard = ({ data, setAircraftInfo }) => {
+  const { user } = useContext(UserContext);
   const { userFav, fetchFavorites } = useContext(UserFav);
   const handleCardClick = () => {
     setAircraftInfo(data);
@@ -14,18 +16,30 @@ const AircraftCard = ({ data, setAircraftInfo }) => {
     await axios
       .post("favorites/add", { aircraftId: data.id }, { withCredentials: true })
       .then((result) => result.data);
-    fetchFavorites();
-    return alert("Aircraft added to favorites");
+    return fetchFavorites();
   };
 
   return (
     data && (
-      <div>
-        <button type="button" className="addFav" onClick={() => addFavorite()}>
-          {userFav.filter((aircraft) => aircraft.id === data.id).length !== 0
-            ? "Remove from favorite"
-            : "Add to favorite"}
-        </button>
+      <div className="cardContainer">
+        {user && (
+          <button
+            type="button"
+            className="addFav"
+            onClick={() => addFavorite()}
+          >
+            {userFav.filter((aircraft) => aircraft.id === data.id).length !==
+            0 ? (
+              <img src="src/assets/icons/favorite.png" alt="" />
+            ) : (
+              <img
+                className="unFaved"
+                src="src/assets/icons/favorite.png"
+                alt=""
+              />
+            )}
+          </button>
+        )}
         <NavLink
           to={`/aircraft/${data.id}`}
           className="aircraft-card"

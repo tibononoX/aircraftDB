@@ -1,6 +1,6 @@
 h1 {
   margin-top: 32px;
-  color: rgb(54, 54, 54);
+  color: rgb(204, 204, 204);
 }
 
 form {
@@ -9,8 +9,8 @@ form {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-color: white;
-  box-shadow: 4px 4px 14px 0px rgb(197, 197, 197);
+  background-color: #46494b;
+  box-shadow: 4px 4px 14px 0px rgb(43, 43, 43);
   padding: 12px;
 
   label {
@@ -18,6 +18,7 @@ form {
     flex-direction: column;
     width: 80%;
     margin-top: 8px;
+    color: rgb(204, 204, 204);
 
     input {
       margin-top: 8px;
@@ -43,6 +44,23 @@ form {
     }
   }
 
+  .remember {
+    width: 100%;
+    label {
+      width: 100%;
+      margin: 0;
+      padding: 12px;
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+
+      input {
+        margin: 0 12px 0 0;
+      }
+    }
+  }
+
   button {
     width: 30%;
     padding: 8px 12px;
@@ -52,7 +70,7 @@ form {
     font-size: 1rem;
     color: white;
     transition: 150ms;
-    box-shadow: 4px 4px 14px 0px rgb(197, 197, 197);
+    box-shadow: 4px 4px 14px 0px rgb(43, 43, 43);
 
     &:hover {
       cursor: pointer;

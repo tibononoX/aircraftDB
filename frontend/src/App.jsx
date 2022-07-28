@@ -66,7 +66,7 @@ function App() {
       {/* eslint-disable-next-line */}
       <UserContext.Provider value={{ user, setUser }}>
         {/* eslint-disable-next-line */}
-        <UserFav.Provider value={{ userFav, fetchFavorites }}>
+        <UserFav.Provider value={{ userFav, setUserFav, fetchFavorites }}>
           {/* eslint-disable-next-line */}
           <AcInfo.Provider value={{ aircraftInfo, setAircraftInfo }}>
             <Router>

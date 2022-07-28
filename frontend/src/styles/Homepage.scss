@@ -13,6 +13,7 @@
     width: 50%;
     display: flex;
     justify-content: space-between;
+    color: rgb(204, 204, 204);
     margin-bottom: 24px;
   }
 
@@ -22,8 +23,8 @@
     padding: 18px;
     display: flex;
     flex-direction: column;
-    background-color: white;
-    box-shadow: 4px 4px 14px 0px rgb(197, 197, 197);
+    background-color: #46494b;
+    box-shadow: 4px 4px 14px 0px rgb(43, 43, 43);
 
     .project-desc {
       width: 100%;
@@ -31,6 +32,11 @@
 
       h2 {
         margin-bottom: 12px;
+        color: rgb(204, 204, 204);
+      }
+
+      p {
+        color: rgb(204, 204, 204);
       }
     }
   }
@@ -47,7 +53,7 @@
       font-size: 2rem;
       color: white;
       transition: 150ms;
-      box-shadow: 4px 4px 14px 0px rgb(197, 197, 197);
+      box-shadow: 4px 4px 14px 0px rgb(43, 43, 43);
 
       &:hover {
         filter: brightness(105%);
@@ -59,14 +65,14 @@
     }
 
     .randomAircraft {
-      background-color: none;
+      background: none;
       border: none;
       text-decoration: none;
-      color: black;
+      color: rgb(204, 204, 204);
       font-size: 1rem;
 
       &:hover {
-        color: rgb(80, 80, 80);
+        color: rgb(255, 255, 255);
         cursor: pointer;
       }
     }

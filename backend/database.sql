@@ -51,7 +51,7 @@ VALUES
     1975
   ),
   (
-    "Robinson R44",
+    "R44",
     7,
     7,
     "The Robinson R44 is a four-seat light helicopter produced by Robinson Helicopter Company since 1992. Based on the company's two-seat Robinson R22, the R44 features hydraulically assisted flight controls. It was first flown on 31 March 1990 and received FAA certification in December 1992, with the first delivery in February 1993.
@@ -82,7 +82,7 @@ It has a redesigned wing with a larger area, a wider wingspan, greater fuel capa
     1997
   ),
   (
-    "Beechcraft King Air",
+    "King Air",
     9,
     6,
     "The Beechcraft King Air is a line of American utility aircraft produced by Beechcraft. The King Air line comprises a number of twin-turboprop models that have been divided into two families. The Model 90 and 100 series developed in the 1960s are known as King Airs, while the later T-tail Model 200 and 300 series were originally marketed as Super King Airs, with the name Super being dropped by Beechcraft in 1996 (although it is still often used to differentiate the 200 and 300 series King Airs from their smaller stablemates).
